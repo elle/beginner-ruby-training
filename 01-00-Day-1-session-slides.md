@@ -16,7 +16,7 @@ slide-transition: fade(0.4)
 1. Beware of Nil
 1. Structs
 1. SOLID principles
-1. Intro to TDD
+1. Refactoring
 
 ---
 # Intros
@@ -451,55 +451,7 @@ Check `01-07-structs.rb`
 Check `01-08-solid.md`
 
 ---
-# Introduction to TDD
-
-### Why?
-
----
-# Why?
-
-- Confidence in functionality
-- Documentation
-- Regression testing
-- Leads to more manageable code
-- Ability to refactor without fear
-- Reduced requirement to test manually, which is slower, automated testing is faster
-- Saves time in the long run
-- Breaks down the problem
-- Easier to cover edge cases
-
----
-# Testing frameworks
-
-- RSpec
-- Minitest
-
----
-# Naming clarification
-
-- Unit tests
-- Integration tests
-- Feature tests
-
----
-# What to test?
-
-- Public methods
-- Golden money path
-- As a minimum, models and feature specs
-- But I also write more types of specs
-
----
-# Let's look at our Gemfile
-
-And also our `/spec` dir
-
----
-# Code time
-
-App: [https://github.com/elle/survey_app](https://github.com/elle/survey_app)
-
-Feel free to code along...
+# Refactoring
 
 ---
 # Daily reflection ritual
