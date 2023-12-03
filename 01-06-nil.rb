@@ -29,3 +29,81 @@ class SubscriptionController
 end
 
 puts SubscriptionController.new.create(1)
+
+
+# Example 2
+# class Person
+#   attr_reader :subscription
+
+#   def subscribe!
+#     @subscription = Subscription.new
+#   end
+# end
+
+# class Subscription
+# end
+
+# person = Person.new
+# person.subscribe!
+# puts person.subscription
+
+
+# Example 3
+# class Person
+# end
+
+# class Subscription
+#   attr_reader :person
+# end
+
+# Example 4
+# class Person
+#   def subscribe!
+#     @subscription = Subscription.new
+#   end
+
+#   def subscription
+#     @subscription or raise NoSubscriptionError
+#   end
+# end
+
+# class NoSubscriptionError < Exception; end
+
+# class Subscription
+# end
+
+# person = Person.new
+# if false
+#   person.subscribe!
+# end
+# puts person.subscription
+
+
+# Example 5
+# class Person
+#   def subscribe
+#     Subscriber.new(Subscription.new)
+#   end
+# end
+
+# class Subscriber
+#   attr_reader :subscription
+
+#   def initialize(subscription)
+#     @subscription = subscription
+#   end
+# end
+
+# class Subscription
+# end
+
+# person = Person.new
+# if true
+#   subscriber = person.subscribe
+# end
+# puts subscriber.subscription
+
+# use your language & libraries intelligently
+# invert the object relationship
+# guard against nils in a manual attribute reader
+# Introduce new domain concepts
