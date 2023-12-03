@@ -22,10 +22,10 @@ slide-transition: fade(0.4)
 # Intros
 
 - Name
-- Where you live
 - Anything you wish about your background
-- What is your current role
+- What is your current role/team/camp
 - Some interesting fact about you
+- What is your favourite thing about Ruby
 
 ---
 # What would you like to learn
@@ -130,17 +130,17 @@ end
   - Use the `:only` option to explicitly state exposed routes.
 
 ---
-# Activity
-
-Fix the code example in the `01-01-fix-my-style.rb` exercise so that it conforms to the Ruby style guide.
-
----
 # Sandi Metz's rules
 
 1. Classes can be no longer than one hundred lines of code.
 - Methods can be no longer than five lines of code.
 - Pass no more than four parameters into a method. Hash options are parameters.
 - Controllers can instantiate only one object. Therefore, views can only know about one instance variable and views should only send messages to that object (`@object.collaborator.value` is not allowed).
+
+---
+# Activity
+
+Fix the code example in the `01-01-fix-my-style.rb` exercise so that it conforms to the Ruby style guide.
 
 ---
 # Further resources
@@ -174,8 +174,7 @@ For example:
 NoMethodError: undefined method `+' for nil:NilClass
 ```
 
-A diligent reading of this error message will tell us two things
-off the bat:
+A diligent reading of this error message will tell us two things off the bat:
 
 1. We tried to add something to an object
 1. That object was `nil`, which does not support adding to it
@@ -188,7 +187,7 @@ A wonderful replacement for the default rails error page in development.
 ---
 # Temporary instructions
 
-- `warn` - a Ruby `Kernel` method)
+- `warn` - a Ruby `Kernel` method
 - raising exceptions, for example `raise @product.inspect`
 - `puts` or `print` statements (or Puts Driven Development)
 
@@ -220,8 +219,8 @@ so that we can use either one we prefer.
 1. Confirm the type of objects.
 1. Confirm the level of nested data structures.
 1. Tell a story (to your rubber duck, cat, fellow team member), out loud, about what you are trying to do.
-1. Avoid the rabbit hole, don't yak shave, remember, constantly, exactly what you are trying to do.
-1. One error at a time.
+1. Avoid the rabbit hole and try not to yak shave.
+1. Work through one error at a time.
 1. Run every change you are doing.
 1. Copy the method to Pry or Debugger or Console and try to run it in isolation.
    For example, grab the params sent to the controller action,
@@ -244,6 +243,8 @@ It contains some implementations of the Mythical Creatures exercises that are ri
 
 ---
 # Top level constants
+
+Check `01-03-constants.rb`
 
 ---
 # Blocks, procs, and lambdas
@@ -278,6 +279,8 @@ Rules:
 1. It is up to the methods implementation to determine how (or even if) to use the provided block
 
 ---
+Check `01-04-blocks-procs-lambdas.md`
+
 ```ruby
 def print_name(name)
   puts name
@@ -341,7 +344,7 @@ lambdas basically a subtype of proc with only two differences:
 ---
 # Activity
 
-1: Each with a proc: write your own each method which takes two arguments: an array and a proc. Execute the proc for each element in the array using `call`.
+**1: Each with a proc:** write your own each method which takes two arguments: an array and a proc. Execute the proc for each element in the array using `call`.
 For example:
 
 ```ruby
@@ -353,10 +356,9 @@ end
 Make sure your each method returns the original collection when it's done
 
 ---
-2: Map with a proc: do the same as above but this time for map.
+**2: Map with a proc:** do the same as above but this time for map.
 
-Make sure your map method returns the collection of new values
-when it's done
+Make sure your map method returns the collection of new values when it's done
 
 ---
 # Enumerable
@@ -366,6 +368,8 @@ when it's done
 
 To use Enumerable, a class needs to define its own `each` method.
 All Enumerables are abstractions on top of `each`.
+
+Check `01-05-enumerable.md`
 
 ---
 ## Raw enumeration, no useful result
@@ -452,6 +456,9 @@ Check `01-08-solid.md`
 
 ---
 # Refactoring
+
+Refactor a store example.
+Check dir `01-09-refactoring-store/`
 
 ---
 # Daily reflection ritual
