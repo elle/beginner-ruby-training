@@ -31,7 +31,7 @@ SOLID helps us write code that is:
 
 ## Single Responsibility Principle
 
-![Single Responsibility Principle](../images/solid/srp.jpg)
+![Single Responsibility Principle](./images/solid/srp.jpg)
 
 > A class should have a single responsibility
 
@@ -113,7 +113,7 @@ After refactoring, we have two classes that each perform a specific task. `The F
 
 ## Open-Closed Principle
 
-![Open-Closed Principle](../images/solid/open-close.jpg)
+![Open-Closed Principle](./images/solid/open-close.jpg)
 
 > Modules, classes, methods and other application entities
 should be open for extension but closed for modification
@@ -252,7 +252,7 @@ logger.log("Emergency error! Please fix me!")
 
 ## Liskov Substitution Principle
 
-![Liskov Substitution Principle](../images/solid/liskov.jpg)
+![Liskov Substitution Principle](./images/solid/liskov.jpg)
 
 > Subclasses should add to a base class' behaviour, not replace it
 
@@ -312,7 +312,7 @@ To comply with the LSP principle, we can segregate the filtration logic and the 
 
 ## The Interface Segregation Principle
 
-![Interface Segregation Principle](../images/solid/interface-segregation.jpg)
+![Interface Segregation Principle](./images/solid/interface-segregation.jpg)
 
 > Clients shouldn't depend on methods they don't use.
 Several client-specific interfaces are better than one generalised interface
@@ -405,13 +405,13 @@ class Staff
   end
 end
 ```
-![Autopilot](../images/solid/auto-pilot.png)
+![Autopilot](./images/solid/auto-pilot.png)
 
 Image credit: https://levelup.gitconnected.com/interface-segregation-principle-made-simple-990da495441c
 
 ## The Dependency Inversion Principle
 
-![Dependency Inversion Principle](../images/solid/dependency-inversion.jpg)
+![Dependency Inversion Principle](./images/solid/dependency-inversion.jpg)
 
 > High-level modules shouldn't depend on low-level modules.
 Both modules should depend on abstractions.

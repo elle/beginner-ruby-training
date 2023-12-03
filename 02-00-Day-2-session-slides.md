@@ -42,7 +42,7 @@ App: [https://github.com/elle/survey_app](https://github.com/elle/survey_app)
 
 ---
 
-![inline](../images/mvc.jpg)
+![inline](./images/mvc.jpg)
 
 ---
 # Models
