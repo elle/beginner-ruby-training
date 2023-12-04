@@ -192,17 +192,6 @@ A wonderful replacement for the default rails error page in development.
 - `puts` or `print` statements (or Puts Driven Development)
 
 ---
-# Interactive debuggers
-
-### Pry or Byebug
-
-In `Gemfile`, I actually use this:
-
-`gem "pry-byebug"`
-
-so that we can use either one we prefer.
-
----
 # Ruby debugging checklist
 
 1. Check the line number.
@@ -234,6 +223,18 @@ so that we can use either one we prefer.
 
 But how to?
 
+
+---
+# Interactive debuggers
+
+### Pry or Byebug
+
+In `Gemfile`, I actually use this:
+
+`gem "pry-byebug"`
+
+so that we can use either one we prefer.
+
 ---
 # Activity
 
@@ -252,9 +253,9 @@ Check `01-03-constants.rb`
 ---
 # Warmup
 
-Write a bit of ruby code to do the following:
+Write a bit of Ruby code to do the following:
 
-1. Take the names of the two people sitting next to you. Generate a new list of those names where all of the vowels are removed.
+1. Take the names of the two people sitting next to you. Generate a new list (`Array`) of those names where all of the vowels are removed.
 1. Write this once using an enumerable and once without (use a `for` or `while` loop for example)
 
 ---
@@ -463,7 +464,7 @@ Check dir `01-09-refactoring-store/`
 ---
 # Daily reflection ritual
 
-[https://tally.so/forms/w8aEBY/edit](https://tally.so/forms/w8aEBY/edit)
+[https://tally.so/r/w8aEBY](https://tally.so/r/w8aEBY)
 
 ---
 # Daily feedback
