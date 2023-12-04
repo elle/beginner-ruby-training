@@ -91,13 +91,15 @@ Check `02-01-rails-structure.md`
 # Why?
 
 - Confidence in functionality
-- Documentation
+- Quicker feedback loop
+- Living documentation
 - Regression testing
 - Leads to more manageable code
 - Ability to refactor without fear
-- Reduced requirement to test manually, which is slower, automated testing is faster
+- Reduced requirement to test manually, which is slower. Automated testing is faster
 - Saves time in the long run
 - Breaks down the problem
+- Catch bugs quicker
 - Easier to cover edge cases
 
 ---
