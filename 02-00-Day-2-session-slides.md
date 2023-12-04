@@ -16,8 +16,8 @@ slide-transition: fade(0.4)
 - REST and routes
 - Addressing callbacks
 - What should go in ActiveRecord Models
-- Active support
-- Do we remember what SOLID is?
+- ActiveSupport
+
 
 ---
 # Set up our app
@@ -26,7 +26,7 @@ App: [https://github.com/elle/survey_app](https://github.com/elle/survey_app)
 
 1. Clone app
 2. `cd survey_app`
-3. Open `.ruby-version` and update with your Ruby version number
+3. Open `.ruby-version` and update with your Ruby version number. Also change Ruby version number in `Gemfile`
 4. `bundle exec rails db:create`
 5. `./bin/setup`
 
@@ -134,6 +134,15 @@ Feel free to code along...
 ---
 # ActiveRecord
 
+---
+
+[ActiveRecord docs](https://guides.rubyonrails.org/active_record_basics.html):
+
+> Active Record is the M in MVC - the model - which is the layer of the system responsible for representing business data and logic. Active Record facilitates the creation and use of business objects whose **data requires persistent storage to a database**.
+
+---
+# ActiveRecord
+
 When we create a new model
 
 - Model is singular
@@ -149,7 +158,7 @@ When we create a new model
 ---
 # Migrations
 
-Reference: [Docs](https://guides.rubyonrails.org/v3.2/migrations.html)
+[Docs](https://guides.rubyonrails.org/v3.2/migrations.html)
 
 ## Transformations
 
@@ -199,7 +208,7 @@ db/schema.rb or db/structure.sql
 ---
 # Associations
 
-In Rails, an association is a connection between two Active Record models.
+In Rails, an association is a connection between two ActiveRecord models.
 
 ```ruby
 class Person < ApplicationRecord
@@ -232,7 +241,117 @@ end
 
 ```ruby
 Person.where(first_name: "Natasha")
+Person.all
+Company.find(1).surveys.active.limit(5)
+Post.alphabetical
+
+class Post < ApplicationRecord
+  def self.alphabetical
+    order(title: :asc)
+  end
+end
 ```
+
+---
+# Domain models
+
+```ruby
+class Person < ActiveRecord::Base
+  belongs_to :role
+end
+
+class Role < ActiveRecord::Base
+  has_many :people
+end
+```
+
+---
+# Question
+
+We need to find all the people who belong to a billable role.
+
+Can you think of ways to achieve this?
+
+
+---
+
+```ruby
+# This works, but is not optimal
+Person.all.select { |person| person.role.billable? }
+```
+
+---
+# Gluing tables together with the :joins method
+
+```ruby
+Person.all.joins(:role)
+```
+
+```sql
+SELECT "people".*
+FROM "people"
+INNER JOIN "roles"
+  ON "roles.id" = "people"."role_id";
+```
+
+---
+```ruby
+Person.all.joins(:role).where(roles: { billable: true })
+```
+
+which generates SQL like this:
+
+```sql
+SELECT "people".*
+FROM "people"
+INNER JOIN "roles"
+  ON "roles.id" = "people"."role_id"
+WHERE "roles"."billable" = 't';
+```
+
+And this query hits the database once!
+
+---
+# Separating concerns with the merge method
+
+Does billable logic fit on `Person` or `Role`?
+
+---
+
+```ruby
+class Role < ApplicationRecord
+  def self.billable
+    where(billable: true)
+  end
+end
+```
+
+And now, when we're querying people, we can use ActiveRecord's `merge` method to leverage this relation:
+
+```ruby
+Person.joins(:role).merge(Role.billable)
+```
+
+---
+# Complete solution
+
+```ruby
+class Role < ApplicationRecord
+  def self.billable
+    where(billable: true)
+  end
+end
+
+class Person < ApplicationRecord
+  def self.billable
+    joins(:role).merge(Role.billable)
+  end
+end
+
+# And now we can just call
+Person.billable
+```
+
 
 ---
 # Polymorphic associations
@@ -431,7 +550,7 @@ A better approach is creating PORO service object.
 ---
 # Activity
 
-Add a `slug` attribute to the Survey object.
+Add a `slug` attribute to the `Survey` object.
 
 Requirements:
 
@@ -511,13 +630,11 @@ require "active_support/core_ext/string"
 
 Check `02-11-active-support-core-extensions.rb`
 
----
-# Do we remember what SOLID is about?
 
 ---
 # Daily reflection ritual
 
-[https://tally.so/forms/w8aEBY/edit](https://tally.so/forms/w8aEBY/edit)
+[https://tally.so/r/w8aEBY](https://tally.so/r/w8aEBY)
 
 ---
 # Daily feedback
