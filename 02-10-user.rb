@@ -12,12 +12,18 @@ class User < ActiveRecord
 
   validates :email, presence: true, uniqueness: true
 
+  # callbacks
+
   def self.active
     where(active: true)
   end
 
+  def self.billable
+    # ...
+  end
+
   def update_login_details(new_email, new_password)
-    self.update_attributes(email: new_email, password: new_password)
+    update_attributes(email: new_email, password: new_password)
   end
 
   def full_name
@@ -43,6 +49,11 @@ class User < ActiveRecord
 
   def add_one_month_of_credit!
     # some logic
+  end
+
+  def confirm!
+    token = nil
+    confirmd_at = Time.zone.now
   end
 
   def recent_surveys

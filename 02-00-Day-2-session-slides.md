@@ -231,9 +231,9 @@ end
 ---
 # Activity
 
-1. Generate an Answer object
+1. Generate an `Answer` object
   - Reference `docs/survey-app.png`
-2. Create an association between company and people, indicating some people might be admins
+2. Create an association between `Company` and `Person`, indicating some people might be admins
 
 ---
 # Optimising queries
@@ -561,6 +561,60 @@ Requirements:
 - Slug needs to be unique within the scope of company
 
 ---
+```ruby
+# create a migration
+rails g migration add_slug_to_survey slug
+
+# migration
+def change
+  add_column :surveys, :slug, :string
+  add_index :surveys, [:company_id, :slug], unique: true
+end
+
+# app/models/survey.rb
+validates :slug, uniqueness: {case_sensitive: false, scope: :company_id}
+
+before_save :generate_slug
+
+private
+def generate_slug
+  self.slug = (slug.presence || name).parameterize
+end
+```
+
+---
+```ruby
+# spec/models/survey_spec.rb
+
+it do
+  is_expected.to validate_uniqueness_of(:slug)
+    .case_insensitive.scoped_to(:company_id)
+end
+
+describe "#generate_slug" do
+  context "when provided manually" do
+    it "parameterise user's unput" do
+      survey = create(
+        :survey,
+        name: "My Callback",
+        slug: "Callbacks are good sometimes",
+      )
+
+      expect(survey.slug).to eq "callbacks-are-good-sometimes"
+    end
+  end
+
+  context "when not provided" do
+    it "parameterises survey's name" do
+      survey = create(:survey, name: "My Callbacks")
+
+      expect(survey.slug).to eq "my-callbacks"
+    end
+  end
+end
+```
+
+---
 # What should go in ActiveRecord models
 
 - ActiveRecord related
@@ -609,7 +663,7 @@ require "active_support/core_ext/string"
 # Activity
 
 1. Find the source code for `"string".pluralize`  
-   Start with `bundle open activesupport`
+   Suggestions: `.method(:pluralize).source_location` and `bundle open activesupport`
 2. What do the following methods do?
   - `#deep_dup`
   - `#with_options`
